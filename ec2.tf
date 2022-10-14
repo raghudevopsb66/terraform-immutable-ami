@@ -2,6 +2,7 @@ resource "aws_instance" "ami" {
   instance_type          = "t3.small"
   ami                    = data.aws_ami.ami.image_id
   vpc_security_group_ids = [aws_security_group.main.id]
+  iam_instance_profile   = aws_iam_instance_profile.parameter-store-access.name
   tags = {
     Name = "${var.COMPONENT}-ami"
   }
